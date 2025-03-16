@@ -26,16 +26,18 @@ A modern e-commerce mobile application built with React Native, featuring a clea
 
 ### Prerequisites
 
-- Node.js
+- Node.js >= 18
 - npm or yarn
 - React Native development environment setup
+- Android Studio (for Android development)
+- Xcode (for iOS development)
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
-cd ECommerceApp
+git clone https://github.com/rashmithaRKL/reactnative-app01.git
+cd reactnative-app01
 ```
 
 2. Install dependencies:
@@ -45,25 +47,46 @@ npm install
 yarn install
 ```
 
-3. Start the development server:
+3. If you encounter any build issues, try these steps:
+
+   a. Clean the build:
+   ```bash
+   # For Android
+   cd android && ./gradlew clean && cd ..
+   
+   # For iOS
+   cd ios && pod deintegrate && pod install && cd ..
+   ```
+
+   b. Reset Metro bundler cache:
+   ```bash
+   npm start -- --reset-cache
+   ```
+
+   c. Rebuild the project:
+   ```bash
+   # For Android
+   npm run android
+   
+   # For iOS
+   npm run ios
+   ```
+
+### Running the App
+
+1. Start the development server:
 ```bash
 npm start
-# or
-yarn start
 ```
 
-4. Run on Android:
+2. Run on Android:
 ```bash
 npm run android
-# or
-yarn android
 ```
 
-5. Run on iOS:
+3. Run on iOS:
 ```bash
 npm run ios
-# or
-yarn ios
 ```
 
 ## Project Structure
@@ -71,37 +94,40 @@ yarn ios
 ```
 src/
 ├── navigation/     # Navigation configuration
+│   └── AppNavigator.js
 ├── screens/        # Screen components
-├── utils/         # Utilities and context
-└── components/    # Reusable components
+│   ├── SplashScreen.js
+│   ├── LoginScreen.js
+│   ├── SignupScreen.js
+│   ├── HomeScreen.js
+│   ├── ProductListScreen.js
+│   ├── ProductDetailScreen.js
+│   ├── CartScreen.js
+│   └── CheckoutScreen.js
+└── utils/         # Utilities and context
+    └── context.js
 ```
 
-## Screens
+## Troubleshooting Common Issues
 
-- **SplashScreen**: Initial loading screen with animations
-- **LoginScreen**: User authentication
-- **SignupScreen**: New user registration
-- **HomeScreen**: Main product browsing
-- **ProductListScreen**: Product catalog with search
-- **ProductDetailScreen**: Detailed product view
-- **CartScreen**: Shopping cart management
-- **CheckoutScreen**: Multi-step checkout process
+1. **Build Failures**
+   - Clean the project and rebuild
+   - Check that all dependencies are properly installed
+   - Ensure you're using the correct Node.js version (>=18)
 
-## State Management
+2. **Metro Bundler Issues**
+   - Clear the Metro cache: `npm start -- --reset-cache`
+   - Ensure no other Metro instance is running
 
-The app uses React Context API for state management, with the following features:
-- User authentication state
-- Shopping cart management
-- Theme preferences
-- Loading and error states
+3. **Tailwind/NativeWind Issues**
+   - Verify babel.config.js includes the nativewind/babel plugin
+   - Check that tailwind.config.js is properly configured
+   - Ensure all style classes are valid Tailwind classes
 
-## Styling
-
-The app uses Tailwind CSS through NativeWind for styling, providing:
-- Consistent design system
-- Responsive layouts
-- Easy theme customization
-- Utility-first CSS approach
+4. **Animation Issues**
+   - Confirm react-native-reanimated is properly linked
+   - Check that the reanimated plugin is included in babel.config.js
+   - Ensure you're using the correct animation syntax
 
 ## Contributing
 
